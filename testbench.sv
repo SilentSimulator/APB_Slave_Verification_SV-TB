@@ -1,3 +1,4 @@
+import pb_pkg::*;
 module tb;
 
   // Interface
