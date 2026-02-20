@@ -1,14 +1,8 @@
-class pbtest;
+program pbtest(apb_if vif);
 
   pbenv env;
-  virtual apb_if vif;
 
-  // Constructor
-  function new(virtual apb_if vif);
-    this.vif = vif;
-    env = new(vif);
-  endfunction
-
+ 
   // Run task
   task run();
     env.run();
@@ -17,5 +11,13 @@ class pbtest;
     #1000;
     $finish;
   endtask
+  
+  initial
+begin
+  env=new(vif);
+  env.run;
+  $display ($time,"apb");
+//	#100 $finish;
+end
 
-endclass
+endprogram
