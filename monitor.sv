@@ -5,11 +5,11 @@ class pbmon;
   
   function new(virtual apb_if vif, mailbox mon2scb);
     this.vif = vif;
-    this.mon2scb = scb;
+    this.mon2scb = mon2scb;
   endfunction
   
   task run();
-    forerver begin
+    forever begin
       
       @(posedge vif.pclk);
       
@@ -18,9 +18,9 @@ class pbmon;
       tr = new();
       
       tr.paddr = vif.paddr;
-      tr.pwrite = vif.pwrite;
+      //tr.pwrite = vif.pwrite;
       
-      if(tr.pwrite)
+      if(tr.op == pbtrans::WRITE)
         tr.pwdata = vif.pwdata;
       else
         tr.prdata = vif.prdata;
@@ -29,4 +29,3 @@ class pbmon;
     end
   endtask
 endclass
-  
