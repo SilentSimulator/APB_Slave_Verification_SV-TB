@@ -18,7 +18,7 @@ class pbdriver;
       vif.psel <= 1;
       vif.penable <= 0;
       vif.paddr <= tr.paddr;          //we are connecting our txn addr to dut via intf
-      vif.pwrite <= (tr.op == WRITE);      //if op=write write data
+      vif.pwrite <= (tr.op == pbtrans::WRITE);      //if op=write write data
       vif.pwdata <= tr.pwdata;
       
       //access
@@ -27,8 +27,8 @@ class pbdriver;
       
       wait (vif.pready);
       
-      if(tr.op == READ) begin
-        tr.prdata <= vif.prdata;
+      if(tr.op == pbtrans::READ) begin
+        tr.prdata = vif.prdata;
       end
       
       //end transfer
@@ -38,4 +38,3 @@ class pbdriver;
     end
   endtask
 endclass
-      
