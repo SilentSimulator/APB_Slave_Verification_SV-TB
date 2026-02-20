@@ -13,8 +13,14 @@ class pbgen;
   task run();
     repeat(num_trans) begin
       tr = new();
-      assert(tr.randomize());
-      else $error("rand failed");
+      //assert(tr.randomize());
+      if (!tr.randomize()) begin
+         $error("Randomization failed");
+         return; 
+      end
+      
+      
+      // $error("rand failed");
       tr.display();
       
       gen2drv.put(tr);
