@@ -18,7 +18,7 @@ two cycles.
 
 # Testbench Architecture
 Interface based signal abstraction.
-Generated different stimulus using constraint based randomization and chacked if randomization is fail or pass.
+Generated different stimulus using constraint based randomization and checked if randomization is fail or pass.
 Mailbox based communication between generator,driver,monitor,scoreboard.
 
 # Featured Verified
