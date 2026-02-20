@@ -1,4 +1,6 @@
-interface apb_if(input logic pclk);
+interface apb_if;
+  
+  logic pclk;
 
   logic presetn;
   logic psel;
