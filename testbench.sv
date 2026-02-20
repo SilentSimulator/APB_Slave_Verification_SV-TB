@@ -1,8 +1,17 @@
-import pb_pkg::*;
+`include "trans.sv"
+`include "gens.sv"
+`include "dr.sv"
+`include "mo.sv"
+`include "sc.sv"
+`include "en.sv"
+`include "tes.sv"
+
 module tb;
+ 
 
   // Interface
-  apb_if intf();
+  apb_if intf(); 
+  
 
   // DUT
   pbslave dut (
@@ -16,6 +25,9 @@ module tb;
     .prdata  (intf.prdata),
     .pready  (intf.pready)
   );
+  
+  pbtest t(intf);   //test
+  
 
   // Clock
   initial begin
@@ -29,13 +41,11 @@ module tb;
     #20;
     intf.presetn = 1;
   end
-
-  // Test
-  pbtest test;
-
-  initial begin
-    test = new(intf);
-    test.run();
+    initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars;
+    #300 $finish;
   end
+  
 
 endmodule
